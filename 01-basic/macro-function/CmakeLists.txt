@@ -10,14 +10,24 @@ project (hello_cmake)
 # add_executable(hello_cmake main.cpp)
 
 macro(bar)
+  if (ARGV1)
+    message(ARGV1 " " ${ARGV1})
+  endif()
+  if (${ARGV1})
+    message($ARGV1 " " ${ARGV1})
+  endif()
   foreach(arg IN LISTS ARGN)
     message(${arg})
   endforeach()
 endmacro()
 
 function(foo)
-  bar(x y z)
+  bar(1 2 3)
 endfunction()
 
-foo(a b c)
+message("bar(1 2 3)")
+bar(1 2 3)
+
+message("foo(4 5 6)")
+foo(4 5 6)
 
